@@ -1,2 +1,2 @@
-# guardians-webgl
+# Guardians
 Guardians public WebGL build
