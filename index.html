@@ -56,7 +56,7 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/WebDesktop.loader.js";
+      var loaderUrl = buildUrl + "/MobileWeb.loader.js";
       var configDesktop = {
         dataUrl: buildUrl + "/WebDesktop.data.unityweb",
         frameworkUrl: buildUrl + "/WebDesktop.framework.js.unityweb",
@@ -69,9 +69,9 @@
       };
 
       var configMobile = {
-        dataUrl: buildUrl + "/WebMobile.data.unityweb",
-        frameworkUrl: buildUrl + "/WebMobile.framework.js.unityweb",
-        codeUrl: buildUrl + "/WebMobile.wasm.unityweb",
+        dataUrl: buildUrl + "/MobileWeb.data.unityweb",
+        frameworkUrl: buildUrl + "/MobileWeb.framework.js.unityweb",
+        codeUrl: buildUrl + "/MobileWeb.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "SashkaStudentCompany",
         productName: "Guardians",
@@ -114,7 +114,7 @@
       script.src = loaderUrl;
     
       script.onload = () => {
-        createUnityInstance(canvas, isMobile?configMobile:configDesktop, (progress) => {
+        createUnityInstance(canvas, configMobile, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
