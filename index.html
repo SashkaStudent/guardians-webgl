@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Хранители история волшебного огня</title>
+  <title>Guardians</title>
   <link rel="stylesheet" href="TemplateData/style.css">
 
   <script>
@@ -22,6 +22,8 @@
     <canvas id="unity-canvas"></canvas>
     <div id="loading-cover" style="display:flex;">
       <div id="unity-loading-bar">
+        <p class="loading_label" id="loading_label">0%</p>
+
         <!--div id="unity-logo"><img src="logo.png"></div-->
         <div id="unity-progress-bar-empty" style="display: none;">
           <div id="unity-progress-bar-full"></div>
@@ -40,7 +42,7 @@
       codeUrl: buildUrl + "/MobileWeb.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Gromov Games",
-      productName: "Хранители история волшебного огня",
+      productName: "Guardians",
       productVersion: "1.0.0",
     };
 
@@ -95,10 +97,14 @@
     unityLoader.src = loaderUrl;
     unityLoader.onload = async () => {
       //await _gpAwaiter.ready;
+      const loadingLabel = document.getElementById("loading_label");
+
       createUnityInstance(canvas, config, (progress) => {
         spinner.style.display = "none";
         progressBarEmpty.style.display = "";
         progressBarFull.style.width = `${100 * progress}%`;
+        loadingLabel.textContent = `${Math.round(100 * progress)}%`
+
       }).then((unityInstance) => {
         window.unityInstance = unityInstance;
         //_unityAwaiter.done(unityInstance);
